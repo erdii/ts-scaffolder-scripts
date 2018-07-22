@@ -81,13 +81,7 @@ async function main() {
 			await asyncify(fs.mkdir, path.join(baseDir, relPath));
 		} else {
 			const isWhitelisted = [
-				".editorconig",
-				".json",
-				".ts",
-				".html",
 				".ejs",
-				".css",
-				".nvmrc"
 			].includes(path.extname(fullPath));
 
 			if (isWhitelisted) {
