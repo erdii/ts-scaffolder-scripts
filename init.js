@@ -95,7 +95,7 @@ async function main() {
 				let relPathCopy = relPath;
 				// strip trailing .ejs from relPath
 				if (/\.ejs$/.test(relPathCopy)) {
-					relPathCopy.replace(/\.ejs$/, "");
+					relPathCopy = relPathCopy.replace(/\.ejs$/, "");
 				}
 				await asyncify(fs.writeFile, path.join(baseDir, relPathCopy), renderedTemplate);
 			} else {
