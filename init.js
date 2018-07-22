@@ -85,13 +85,17 @@ async function main() {
 				".json",
 				".ts",
 				".html",
-				".gitignore",
+				".gitignore.template",
 				".css",
 				".nvmrc"
 			].includes(path.extname(fullPath));
 
 			if (isWhitelisted) {
 				const renderedTemplate = await asyncify(ejs.renderFile, fullPath, config.get());
+				// strip trailing .template from relPath
+				if (/\.template$/.test(relPath)) {
+					relPath.replace(/\.template$/, "");
+				}
 				await asyncify(fs.writeFile, path.join(baseDir, relPath), renderedTemplate);
 			} else {
 				await asyncify(fs.copyFile, fullPath, path.join(baseDir, relPath), fs.constants.COPYFILE_EXCL);
