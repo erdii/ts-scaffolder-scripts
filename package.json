@@ -1,6 +1,6 @@
 {
   "name": "ts-scaffolder-scripts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "peek into `index.js` if you want to know what's going on",
   "main": "index.js",
   "repository": {
