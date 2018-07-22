@@ -1,0 +1,12 @@
+{
+  "input": {
+    "envPrefix": "WEBAPP_ENV_"
+  },
+  "output": {
+    "isWebapp": <% if (isWebapp) { %>true<% } else { %>false<% } %>,
+    "folder": "dist",
+    "umdName": "<%- umdName %>",
+    "banner": "/* bundled with rollup and ts-scaffolder! <3 */",
+    "minify": true
+  }
+}

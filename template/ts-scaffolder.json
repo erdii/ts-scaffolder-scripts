@@ -1,6 +1,0 @@
-{
-  "output": {
-    "umdName": "<%- umdName %>",
-    "isWebapp": <% if (isWebapp) { %>true<% } else { %>false<% } %>
-  }
-}
