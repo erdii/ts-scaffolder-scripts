@@ -74,7 +74,7 @@ async function crawlFolder(folderPath, cbAsync, relPath = "", maxDepth = 10, dep
 async function main() {
 	const baseDir = process.cwd();
 
-	console.log(`Scaffolded files.`);
+	console.log(`Scaffolding files...`);
 
 	const fileCount = await crawlFolder(templatePath, async (isDir, fullPath, relPath) => {
 		if (isDir) {
@@ -100,7 +100,7 @@ async function main() {
 
 	console.log(`Scaffolded ${fileCount} files.`);
 
-	console.log("Patching package.json scripts");
+	console.log("Patching package.json scripts...");
 
 	const pkgJson = JSON.parse(await asyncify(fs.readFile, path.join(baseDir, "package.json"), "utf8"));
 
@@ -113,14 +113,14 @@ async function main() {
 
 	await asyncify(fs.writeFile, path.join(baseDir, "package.json"), JSON.stringify(pkgJson, null, 2));
 
-	console.log("Patched package.json scripts");
+	console.log("Patched package.json scripts.");
 
 	if (!config.get("isWebapp")) {
-		console.log("Install @types/node");
+		console.log("Installing @types/node...");
 
 		await asyncify(exec, "npm i -D @types/node");
 
-		console.log("Installed @types/node");
+		console.log("Installed @types/node.");
 	}
 }
 
