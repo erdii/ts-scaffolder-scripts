@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "declaration": false,
+    "strict": true,
+    "removeComments": true,
+    "lib": [
+      "es6"<% if (isWebapp) { %>,
+      "dom"<% } %>
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}

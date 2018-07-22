@@ -71,7 +71,8 @@ const config = convict({
 			doc: "bundle filename without .js",
 			format: String,
 			default: "bundle",
-			arg: "output-"
+			arg: "output-bundle",
+			env: "OUTPUT_BUNDLE",
 		},
 		folder: {
 			doc: "output folder",
@@ -318,7 +319,7 @@ Output folder:\t\t{yellow ${config.get("output").folder}}`);
 }
 
 main().catch(err => {
-	console.error(chalk.bgRed("UNCATCHER ERROR!"), err);
+	console.error(chalk.bgRed("UNCATCHED ERROR!"), err);
 	console.error(chalk.bgRed("exiting!"));
 	process.exit(3);
 });
