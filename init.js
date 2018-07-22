@@ -92,11 +92,12 @@ async function main() {
 
 			if (isWhitelisted) {
 				const renderedTemplate = await asyncify(ejs.renderFile, fullPath, config.get());
-				// strip trailing .template from relPath
-				if (/\.template$/.test(relPath)) {
-					relPath.replace(/\.template$/, "");
+				let relPathCopy = relPath;
+				// strip trailing .ejs from relPath
+				if (/\.ejs$/.test(relPathCopy)) {
+					relPathCopy.replace(/\.ejs$/, "");
 				}
-				await asyncify(fs.writeFile, path.join(baseDir, relPath), renderedTemplate);
+				await asyncify(fs.writeFile, path.join(baseDir, relPathCopy), renderedTemplate);
 			} else {
 				await asyncify(fs.copyFile, fullPath, path.join(baseDir, relPath), fs.constants.COPYFILE_EXCL);
 			}
