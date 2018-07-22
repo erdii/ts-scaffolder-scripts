@@ -85,7 +85,7 @@ async function main() {
 				".json",
 				".ts",
 				".html",
-				".gitignore.template",
+				".ejs",
 				".css",
 				".nvmrc"
 			].includes(path.extname(fullPath));
