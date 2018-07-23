@@ -21,6 +21,11 @@ const config = convict({
 		arg: "umdname",
 		env: "UMDNAME",
 	},
+	nodeVersion: {
+		doc: "current node version for .nvmrc",
+		format: String,
+		default: process.versions.node,
+	}
 })
 
 const templatePath = path.join(__dirname, "template");

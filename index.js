@@ -178,7 +178,7 @@ function createBundleConfig(dest, { output, plugins }) {
 
 function getWebappEnvConfig() {
 	const envVarNames = Object.keys(process.env)
-		.filter(name => name.startsWith(config.get("input").envPrefix) && name.length > options.exportedEnvPrefix.length)
+		.filter(name => name.startsWith(config.get("input").envPrefix) && name.length > config.get("input").envPrefix.length)
 
 	return envVarNames.reduce((map, name) => {
 		map[`process.env.${name}`] = JSON.stringify(process.env[name]);

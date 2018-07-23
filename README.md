@@ -9,7 +9,6 @@ peek into `index.js` or the [erdii/ts-scaffolder](https://github.com/erdii/ts-sc
 
 ## todo
 
-* showcase .env file support
 * clean up when scaffolding fails
 * eject script
 * copy static folder into dist folder on build
