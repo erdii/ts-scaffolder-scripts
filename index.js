@@ -137,6 +137,7 @@ const rollupPluginBrowsersync = require("rollup-plugin-browsersync");
 const rollupPluginReplace = require("rollup-plugin-replace");
 const rollupPluginCommonjs = require("rollup-plugin-commonjs");
 const rollupPluginNodeResolve = require("rollup-plugin-node-resolve");
+const cpr = require("cpr");
 
 const defaultPlugins = [
 	rollupPluginNodeResolve({
@@ -263,6 +264,22 @@ function cleanOutputFolder() {
 	});
 }
 
+function cprAsync(from, to) {
+	return new Promise((resolve, reject) => {
+		cpr(from, to, {
+			overwrite: true,
+			deleteFirst: true,
+			confirm: true,
+		}, (err, files) => {
+			if (err != null) {
+				reject(err);
+			} else {
+				resolve(files);
+			}
+		});
+	});
+}
+
 async function main() {
 	if (config.get("debug")) {
 		console.log("config:", config.toString());
@@ -315,6 +332,14 @@ Output folder:\t\t{yellow ${config.get("output").folder}}`);
 	} else {
 		const bundle = await rollup.rollup(rollupConfig);
 		await bundle.write(rollupConfig.output);
+
+		if (config.get("output").isWebapp) {
+			const copiedStaticFiles = await cprAsync("static", path.resolve(config.get("output").folder, "static"));
+			console.log(chalk`[{green rollup}] Copied ${copiedStaticFiles.length} static files:`);
+			for (const copiedStaticFile of copiedStaticFiles) {
+				console.log(chalk`[{green rollup}]\t> ${copiedStaticFile}`);
+			}
+		}
 	}
 }
 
