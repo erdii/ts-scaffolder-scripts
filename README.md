@@ -1,3 +1,5 @@
+This was an experiment!
+
 # work in progress
 
 peek into `index.js` or the [erdii/ts-scaffolder](https://github.com/erdii/ts-scaffolder) repo, if you want to know what's going on
